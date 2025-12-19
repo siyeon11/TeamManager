@@ -23,7 +23,7 @@ public class Project {
 
     // ✅ 역할/카테고리 공통 리스트
     private final List<String> roles = new ArrayList<String>(Arrays.asList(
-            "조장", "자료조사", "PPT", "발표", "문서정리", "개발", "디자인"
+            "조장", "자료조사", "PPT", "발표"
     ));
 
     public String getProjectName() { return projectName; }
