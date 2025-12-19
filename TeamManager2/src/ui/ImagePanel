@@ -1,0 +1,40 @@
+package ui;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.io.IOException;
+import java.net.URL;
+
+public class ImagePanel extends JPanel {
+    private Image image;
+
+    // classpath 리소스(/assets/...) 로드
+    public ImagePanel(String resourcePath) {
+        setOpaque(false);
+        try {
+            URL url = getClass().getResource(resourcePath);
+            if (url != null) image = ImageIO.read(url);
+        } catch (IOException ignored) {}
+    }
+
+    // 파일 경로로도 로드하고 싶으면 이 생성자 사용
+    public ImagePanel(Image img) {
+        setOpaque(false);
+        this.image = img;
+    }
+
+    public void setImage(Image img) {
+        this.image = img;
+        repaint();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (image == null) return;
+
+        // 패널 크기에 맞춰 꽉 채우기(늘리기)
+        g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
+    }
+}
